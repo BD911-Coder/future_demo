@@ -1,11 +1,16 @@
-
-  Future<void> main() async {
-    print('Before the future');
-    final value = await Future<int>.delayed(
-      Duration(milliseconds: 1000),
+void main(List<String> args) {
+  print('Before the future');
+  try {
+    final value = Future<int>.delayed(
+      Duration(seconds: 1),
       () => 42,
     );
-    print('Value : $value');
-    print('After the future');
+    throw Exception('An Error!');
+    print('Value: $value');
+  } catch (error) {
+    print(error);
+  } finally {
+    print('Future is complete');
   }
-
+  print('After the future');
+}
